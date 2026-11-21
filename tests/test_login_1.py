@@ -1,4 +1,3 @@
-from pages import registration_page
 from pages.login_page import LoginPage
 from pages.registration_page import RegistrationPage
 
@@ -40,9 +39,9 @@ def test_login_unregistered_user(driver):
     login_page.fill_email_field("manuel987@gmail.com")
     login_page.fill_password_field(VALID_PASSWORD)
     login_page.click_on_login_button()
-    assert "Wrong email or password format" in registration_page.get_alert_text()
+    assert "Wrong email or password" in login_page.get_alert_text()
 
-    registration_page.accept_alert()
+    login_page.accept_alert()
 
 
 def test_registration_with_invalid_password(driver):

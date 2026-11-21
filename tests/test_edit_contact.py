@@ -24,31 +24,31 @@ def test_edit_contact_name_field(authenticated):
 
     contacts_page.open_contact_details_card(contact.phone)
     contacts_page.open_edit_mode()
-    contacts_page.set_edit_mode(contact_page.EDIT_NAME_PHONE_INPUT, new_name)
-    contact_page.submit_edit()
+    contacts_page.set_edit_mode(contacts_page.EDIT_NAME_INPUT, new_name)
+    contacts_page.submit_edit()
 
     assert contacts_page.contact_name_for_phone(contact.phone) == new_name
 
-    #def test_edit_contact_email_field(authenticated):
-        #contact_page = ContactPage(authenticated)
+def test_edit_contact_email_field(authenticated):
+    contact_page = ContactPage(authenticated)
 
-        #contacts_page = ContactsPage(authenticated)
+    contacts_page = ContactsPage(authenticated)
 
-        #contact = create_contact()
+    contact = create_contact()
 
-        #contact_page.create_contact_steps(contact)
+    contact_page.create_contact_steps(contact)
 
-        #new_email = fake.email()
+    new_email = fake.email()
 
-        #contacts_page.open_contact_details_card(contact.phone)
+    contacts_page.open_contact_details_card(contact.phone)
 
-        #contacts_page.open_edit_mode()
+    contacts_page.open_edit_mode()
 
-        #contacts_page.set_edit_mode(contacts_page.EDIT_EMAIL_INPUT, new_email)
+    contacts_page.set_edit_mode(contacts_page.EDIT_EMAIL_INPUT, new_email)
 
-        #contacts_page.submit_edit()
+    contacts_page.submit_edit()
 
-        #assert contacts_page.contact_email() == new_email
+    assert contacts_page.contact_email() == new_email
 
 
 

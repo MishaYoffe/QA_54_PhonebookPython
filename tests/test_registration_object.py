@@ -35,8 +35,7 @@ def test_registration_success(driver):
     f"kristina_test{random_suffix}@gmail.com",
 
     "Aa1234567!"
-
-)
+    )
 
     registration_page.open_registration_page()
 
@@ -61,8 +60,7 @@ def test_registration_with_wrong_email(driver):
     f"kristina_testgmail.com",
 
     "Aa1234567!"
-
-)
+    )
 
     registration_page.open_registration_page()
 
@@ -87,9 +85,8 @@ def test_registration_with_wrong_password(driver):
 
     f"kristina_test@gmail.com",
 
-    "Aa1234567$$$"
-
-)
+    "Aa1234567"
+    )
 
     registration_page.open_registration_page()
 
@@ -116,8 +113,7 @@ def test_registration_with_already_existed(driver):
     f"kristina_test@gmail.com",
 
     "Aa1234567!"
-
-)
+    )
 
     registration_page.open_registration_page()
 

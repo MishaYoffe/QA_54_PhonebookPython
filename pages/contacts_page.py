@@ -48,7 +48,7 @@ class ContactsPage(BasePage):
         time.sleep(1)
 
     def contact_name_for_phone(self, phone):
-        card = self.find(By.CSS_SELECTOR, ".contact-item-detailed_card__50dTS h2")
+        card = self.find((By.CSS_SELECTOR, ".contact-item-detailed_card__50dTS h2"))
         return card.text.split()[0]
 
     def contact_email(self):
@@ -67,6 +67,9 @@ class ContactsPage(BasePage):
     def remove_all_contacts(self):
         while self.get_contact_cards_number() > 0:
             self.open_first_contact()
+
+    def set_edit_mode(self, locator, value):
+        self.fill(locator, value)
 
 
 

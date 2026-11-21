@@ -2,7 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from pages.base_page import BasePage
-from models.contact import  Contact
+
 
 
 
@@ -13,7 +13,7 @@ class ContactPage(BasePage):
 
     LAST_NAME_INPUT = (By.CSS_SELECTOR, "input[placeholder='Last Name']")
 
-    PHOHE_INPUT = (By.CSS_SELECTOR, "input[placeholder='Phone']")
+    PHONE_INPUT = (By.CSS_SELECTOR, "input[placeholder='Phone']")
 
     EMAIL_INPUT = (By.CSS_SELECTOR, "input[placeholder='email']")
 
@@ -24,11 +24,10 @@ class ContactPage(BasePage):
     SAVE_BUTTON = (By.XPATH, "//button[contains(., 'Save')]")
 
 
-    def __init__(self, driver):
-        self.driver = driver
+
 
     def open_contact_form(self):
-        self.click(self, self.ADD_CONTACT_BUTTON).click()
+        self.click(self.ADD_CONTACT_BUTTON)
 
     def fill_name(self, name):
         #self.driver.find_element(*self.NAME_INPUT).clear()
@@ -41,15 +40,21 @@ class ContactPage(BasePage):
         self.fill(self.LAST_NAME_INPUT,last_name)
 
     def fill_address(self, address):
-        #self.driver.find_element(*self.ADDRESS_INPUTRESS_INPUT).clear()
-        #self.driver.find_element(*self.ADDRESS_INPUTDRESS_INPUT).send_keys(address)
-        self.fill(self.ADDRESS_INPUTRESS,address)
+        #self.driver.find_element(*self.ADDRESS_INPUT).clear()
+        #self.driver.find_element(*self.ADDRESS_INPUT).send_keys(address)
+        self.fill(self.ADDRESS_INPUT,address)
 
     def fill_description(self, description):
         #self.driver.find_element(*self.DESCRIPTION_INPUT).clear()
 
         #self.driver.find_element(*self.DESCRIPTION_INPUT).send_keys(description)
-        self.fill(self.DESCRIPTION,description)
+        self.fill(self.DESCRIPTION_INPUT,description)
+
+    def fill_phone_field(self, phone):
+        self.fill(self.PHONE_INPUT, phone)
+
+    def fill_email_field(self, email):
+        self.fill(self.EMAIL_INPUT, email)
 
 
     def fill_contact_form(self, contact):
@@ -57,9 +62,9 @@ class ContactPage(BasePage):
 
         self.fill_last_name(contact.last_name)
 
-        self.fill_phone(contact.phone)
+        self.fill_phone_field(contact.phone)
 
-        self.fill_email(contact.email)
+        self.fill_email_field(contact.email)
 
         self.fill_address(contact.address)
 
@@ -76,7 +81,7 @@ class ContactPage(BasePage):
 
         element = WebDriverWait(self.driver, 5).until(
 
-            expected_conditions.presence_of_element_located(locator))
+            EC.presence_of_element_located(locator))
 
         return element.is_displayed()
 
