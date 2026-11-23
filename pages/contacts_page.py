@@ -35,6 +35,7 @@ class ContactsPage(BasePage):
 
     def open_contact_details_card(self, phone):
         self.click(self.get_card_locator(phone))
+        logger.info(f"Opening contact details card: {phone}")
 
     @staticmethod
     def get_card_locator(phone):
@@ -42,10 +43,12 @@ class ContactsPage(BasePage):
 
     def open_edit_mode(self):
         self.click(self.BUTTON_EDIT)
+        logger.info(f"Opening edit mode")
 
     def submit_edit(self):
         self.click(self.EDIT_SAVE_BUTTON)
         time.sleep(1)
+        logger.info(f"Submitting edit mode")
 
     def contact_name_for_phone(self, phone):
         card = self.find((By.CSS_SELECTOR, ".contact-item-detailed_card__50dTS h2"))
@@ -58,6 +61,7 @@ class ContactsPage(BasePage):
     def remove_current_contact(self):
         self.click(self.BUTTON_REMOVE)
         time.sleep(1)
+        logger.info(f"Removing current contact")
 
     def open_first_contact(self):
         cards = self.driver.find_elements(*self.CONTACTS_CARDS)
@@ -67,6 +71,7 @@ class ContactsPage(BasePage):
     def remove_all_contacts(self):
         while self.get_contact_cards_number() > 0:
             self.open_first_contact()
+            logger.info(f"Removing all contacts")
 
     def set_edit_mode(self, locator, value):
         self.fill(locator, value)

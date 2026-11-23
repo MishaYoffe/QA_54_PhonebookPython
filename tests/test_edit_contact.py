@@ -1,8 +1,11 @@
+import logging
 from models.contact import Contact
 from pages.add_contact_page import ContactPage
 from pages.contacts_page import ContactsPage
 from faker import Faker
 fake = Faker()
+logging = logging.getLogger(__name__)
+
 
 def create_contact():
     return Contact(
@@ -15,12 +18,17 @@ def create_contact():
 
 
 def test_edit_contact_name_field(authenticated):
+    logging.info("test_edit_contact_phone_field")
+
     contact_page = ContactPage(authenticated)
     contacts_page = ContactsPage(authenticated)
 
     contact = create_contact()
     contact_page.create_contact_steps(contact)
     new_name = fake.first_name()
+
+    logging.debug(f"Old phone number: {new_phone}")
+    logging.debug(f"New phone number: {new_phone}")
 
     contacts_page.open_contact_details_card(contact.phone)
     contacts_page.open_edit_mode()

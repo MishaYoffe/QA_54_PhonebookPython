@@ -1,5 +1,9 @@
+import logging
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+
+logger = logging.getLogger(__name__)
 
 class BasePage:
 
@@ -11,11 +15,13 @@ class BasePage:
 
     def click(self, locator):
         self.find(locator).click()
+        logger.info(f"Click on {locator}")
 
     def fill(self, locator, value):
         self.find(locator).clear()
 
         self.find(locator).send_keys(value)
+        logger.info(f"Fill {locator} with {value}")
 
     def get_alert_text(self):
         alert = WebDriverWait(self.driver, timeout=10).until(
