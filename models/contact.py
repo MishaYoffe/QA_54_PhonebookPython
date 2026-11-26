@@ -1,18 +1,35 @@
+#class Contact:
+
+    #def __init__(self, name, last_name, phone, email,address, description):
+        #self.name = name
+
+        #self.last_name = last_name
+
+        #self.phone = phone
+
+        #self.email = email
+
+        #self.address = address
+
+        #self.description = description
+
+
+from dataclasses import dataclass
+
+
+@dataclass
 class Contact:
+    name: str
 
-    def __init__(self, name, last_name, phone, email,address, description):
+    last_name: str
 
-        self.name = name
+    phone: str
 
-        self.last_name = last_name
+    email: str
 
-        self.phone = phone
+    address: str
 
-        self.email = email
-
-        self.address = address
-
-        self.description = description
+    description: str
 
 
 

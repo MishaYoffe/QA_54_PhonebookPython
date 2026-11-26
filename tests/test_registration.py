@@ -1,4 +1,8 @@
+import logging
+
 from pages.registration_page import RegistrationPage
+
+logging = logging.getlogger(__name__)
 
 VALID_EMAIL = "manuel1121@gmail.com"
 VALID_PASSWORD = "Manuel12345$"

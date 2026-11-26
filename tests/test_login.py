@@ -1,5 +1,19 @@
 from pages.login_page import LoginPage
 
+from tests.test_edit_contact import logging
+
+
+
+
+
+
+logger = logging.getLogger(__name__)
+
+
+
+
+
+
 VALID_EMAIL = "manuel@gmail.com"
 
 VALID_PASSWORD = "Manuel12345$"
@@ -13,6 +27,7 @@ INVALID_PASSWORD = "Manuel123$5"
 
 
 def test_with_valid_email_and_invalid_password(driver):
+    logger.info("test_valid_login_success")
 
     login_page = LoginPage(driver)
 

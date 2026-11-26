@@ -1,6 +1,8 @@
 import logging
 import random
 
+import pytest
+
 from models.contact import Contact
 
 from pages.add_contact_page import ContactPage
@@ -11,7 +13,7 @@ fake = Faker()
 logger = logging.getLogger(__name__)
 
 
-def test_add_contact_success(authenticated):
+def test_add_contact_success(authenticated, phone):
     logger.info(f"test_add_contact_success")
     contact_page = ContactPage(authenticated)
     random_suffix = random.randint(10000, 1000000)
@@ -68,6 +70,51 @@ def test_add_contact_success_all_req_fields(authenticated):
     contact_page.submit_contact()
 
     assert contact_page.contact_card_visible(contact.phone)
+
+
+@pytest.mark.parametrize(
+
+    "phone",
+    [
+        fake.numerify("05#########"),
+        ""
+    ]
+
+)
+
+
+
+def test_add_contact_empty_phone_negative(authenticated, phone):
+
+    contact_page = ContactPage(authenticated)
+
+    contact = Contact(
+
+        fake.first_name(),
+
+        fake.last_name(),
+
+        phone,
+
+        fake.email(),
+
+        fake.street_address(),
+
+        fake.sentence(nb_words=2)
+
+    )
+
+    contact_page.create_contact_steps(contact)
+
+    assert contact_page.is_alert_visible()
+
+    assert "Phone number must contain only digits" in contact_page.get_alert_text()
+
+    contact_page.accept_alert()
+
+
+
+
 
 
 
